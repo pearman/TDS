@@ -12,8 +12,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.files.FileHandle;
 
-import com.tds.HUD;
-
 public class TDS extends ApplicationAdapter {
     HUD hud;
     SpriteBatch batch;
@@ -32,7 +30,7 @@ public class TDS extends ApplicationAdapter {
         sprite = new Sprite(img, 0, 0, 64, 64);
         posx = 0;
         posy = 0;
-        speed = 6;
+        speed = 100;
     }
 
     @Override
@@ -41,13 +39,13 @@ public class TDS extends ApplicationAdapter {
         mouseY = Gdx.input.getY();
 
         if(Gdx.input.isKeyPressed(Keys.A))
-            posx -= speed;
+            posx -= Gdx.graphics.getDeltaTime() * speed;
         if(Gdx.input.isKeyPressed(Keys.D))
-            posx += speed;
+            posx += Gdx.graphics.getDeltaTime() * speed;
         if(Gdx.input.isKeyPressed(Keys.W)) 
-            posy += speed;
+            posy += Gdx.graphics.getDeltaTime() * speed;
         if(Gdx.input.isKeyPressed(Keys.S)) 
-            posy -= speed;
+            posy -= Gdx.graphics.getDeltaTime() * speed;
 
         float dirX = mouseX - posx;
         float dirY = mouseY - posy;
