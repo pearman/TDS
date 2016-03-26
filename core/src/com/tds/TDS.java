@@ -11,6 +11,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.Color;
 
 public class TDS extends ApplicationAdapter {
     HUD hud;
@@ -21,6 +23,7 @@ public class TDS extends ApplicationAdapter {
     float posy;
     float mouseX, mouseY;
     float speed;
+    BitmapFont pen;
 
     @Override
     public void create () {
@@ -31,12 +34,14 @@ public class TDS extends ApplicationAdapter {
         posx = 0;
         posy = 0;
         speed = 100;
+        pen = new BitmapFont();
+        pen.setColor(Color.BLACK);
     }
 
     @Override
     public void render () {
         mouseX = Gdx.input.getX();
-        mouseY = Gdx.input.getY();
+        mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
         if(Gdx.input.isKeyPressed(Keys.A))
             posx -= Gdx.graphics.getDeltaTime() * speed;
@@ -47,9 +52,9 @@ public class TDS extends ApplicationAdapter {
         if(Gdx.input.isKeyPressed(Keys.S)) 
             posy -= Gdx.graphics.getDeltaTime() * speed;
 
-        float dirX = mouseX - posx;
-        float dirY = mouseY - posy;
-        double angle = Math.atan2(dirX, dirY);
+        float dirX =  mouseX - posx;
+        float dirY =  mouseY - posy;
+        double angle = Math.atan2(-dirX, dirY);
 
         sprite.setX(posx);
         sprite.setY(posy);
@@ -58,7 +63,13 @@ public class TDS extends ApplicationAdapter {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
+        pen.draw(batch, Double.toString(dirX), 50, 250);
+        pen.draw(batch, Double.toString(mouseX), 100, 250);
+        pen.draw(batch, Double.toString(dirY), 50, 300);
+        pen.draw(batch, Double.toString(mouseY), 100, 300);
+        pen.draw(batch, Double.toString(angle), 50, 200);
         sprite.draw(batch);
+        
         batch.end();
     }
 }
