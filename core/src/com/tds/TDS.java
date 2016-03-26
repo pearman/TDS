@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.Color;
 public class TDS extends ApplicationAdapter {
     HUD hud;
     SpriteBatch batch;
-    Sprite sprite;
+    Admin admin;
     Texture img;
     float posx;
     float posy;
@@ -30,46 +30,26 @@ public class TDS extends ApplicationAdapter {
         hud = new HUD();
         batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
-        sprite = new Sprite(img, 0, 0, 64, 64);
-        posx = 0;
-        posy = 0;
-        speed = 100;
+        
+        admin = new Admin(1, 3, 1, 200, img);
+        posx = Gdx.graphics.getWidth()/2 - admin.getWidth()/2;
+        posy = Gdx.graphics.getHeight()/2 - admin.getHeight()/2;
+        admin.setPosition(posx, posy);
+        
         pen = new BitmapFont();
         pen.setColor(Color.BLACK);
     }
 
     @Override
     public void render () {
-        mouseX = Gdx.input.getX();
-        mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
-
-        if(Gdx.input.isKeyPressed(Keys.A))
-            posx -= Gdx.graphics.getDeltaTime() * speed;
-        if(Gdx.input.isKeyPressed(Keys.D))
-            posx += Gdx.graphics.getDeltaTime() * speed;
-        if(Gdx.input.isKeyPressed(Keys.W)) 
-            posy += Gdx.graphics.getDeltaTime() * speed;
-        if(Gdx.input.isKeyPressed(Keys.S)) 
-            posy -= Gdx.graphics.getDeltaTime() * speed;
-
-        float dirX =  mouseX - posx;
-        float dirY =  mouseY - posy;
-        double angle = Math.atan2(-dirX, dirY);
-
-        sprite.setX(posx);
-        sprite.setY(posy);
-
-        sprite.setRotation((float)Math.toDegrees(angle));
+        admin.processMovement();   
+        
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        pen.draw(batch, Double.toString(dirX), 50, 250);
-        pen.draw(batch, Double.toString(mouseX), 100, 250);
-        pen.draw(batch, Double.toString(dirY), 50, 300);
-        pen.draw(batch, Double.toString(mouseY), 100, 300);
-        pen.draw(batch, Double.toString(angle), 50, 200);
-        sprite.draw(batch);
         
+        batch.begin();
+        admin.draw(batch);
+
         batch.end();
     }
 }
