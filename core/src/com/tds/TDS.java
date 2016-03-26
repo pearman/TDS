@@ -16,9 +16,9 @@ public class TDS extends ApplicationAdapter {
 	SpriteBatch batch;
         Sprite sprite;
 	Texture img;
-        int posx;
-        int posy;
-        int speed;
+        float posx;
+        float posy;
+        float speed;
 	
 	@Override
 	public void create () {
@@ -33,21 +33,20 @@ public class TDS extends ApplicationAdapter {
 	@Override
 	public void render () {
             if(Gdx.input.isKeyPressed(Keys.A))
-                posx -= Gdx.graphics.getDeltaTime() * speed;
+                posx -= speed;
             if(Gdx.input.isKeyPressed(Keys.D))
-                posx += Gdx.graphics.getDeltaTime() * speed;
+                posx += speed;
             if(Gdx.input.isKeyPressed(Keys.W)) 
-                posy += Gdx.graphics.getDeltaTime() * speed;
+                posy += speed;
             if(Gdx.input.isKeyPressed(Keys.S)) 
-                posy -= Gdx.graphics.getDeltaTime() * speed;
-                
+                posy -= speed;
             
-            System.out.println(Integer.toString(posx));
-            
+            sprite.setX(posx);
+            sprite.setY(posy);
             Gdx.gl.glClearColor(1, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             batch.begin();
-            batch.draw(sprite, posx, posy);
+            sprite.draw(batch);
             batch.end();
         }
 }
