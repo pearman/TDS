@@ -36,6 +36,7 @@ public class TDS extends ApplicationAdapter {
         posx = Gdx.graphics.getWidth()/2 - admin.getWidth()/2;
         posy = Gdx.graphics.getHeight()/2 - admin.getHeight()/2;
         admin.setPosition(posx, posy);
+        admin.scale(.2f);
         
         v1 = new Virus();
         v1.setPosition(40, 40);
