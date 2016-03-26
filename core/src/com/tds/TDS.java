@@ -18,6 +18,7 @@ public class TDS extends ApplicationAdapter {
 	Texture img;
         float posx;
         float posy;
+        float mouseX, mouseY;
         float speed;
 	
 	@Override
@@ -32,6 +33,9 @@ public class TDS extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+            mouseX = Gdx.input.getX();
+            mouseY = Gdx.input.getY();
+            
             if(Gdx.input.isKeyPressed(Keys.A))
                 posx -= speed;
             if(Gdx.input.isKeyPressed(Keys.D))
@@ -41,8 +45,13 @@ public class TDS extends ApplicationAdapter {
             if(Gdx.input.isKeyPressed(Keys.S)) 
                 posy -= speed;
             
+            float dirX = mouseX - posx;
+            float dirY = mouseY - posy;
+            double angle = Math.atan2(dirX, dirY);
+            
             sprite.setX(posx);
             sprite.setY(posy);
+            sprite.setRotation((float)Math.toDegrees(angle));
             Gdx.gl.glClearColor(1, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             batch.begin();
