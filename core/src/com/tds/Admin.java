@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  *
@@ -56,11 +57,15 @@ public class Admin extends Entity{
         float dirY =  mouseY - getY() - getHeight()/2;
         double angle = Math.atan2(-dirX, dirY);
         
+        this.boundingCircle.setPosition(this.getX(), this.getY());
+        
         setRotation((float)Math.toDegrees(angle));
     }
     
     public Boolean checkCollision(Entity e){
-        //Left Collision
+        Rectangle r1 = e.getBoundingRectangle();
+        Rectangle r2 = e.getBoundingRectangle();
         
+        return r2.overlaps(r1);
     }
 }
