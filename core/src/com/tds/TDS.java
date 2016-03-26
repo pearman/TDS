@@ -27,7 +27,7 @@ public class TDS extends ApplicationAdapter {
             sprite = new Sprite(img, 0, 0, 64, 64);
             posx = 0;
             posy = 0;
-            speed = 10;
+            speed = 6;
 	}
 
 	@Override
@@ -43,6 +43,7 @@ public class TDS extends ApplicationAdapter {
             
             sprite.setX(posx);
             sprite.setY(posy);
+            
             Gdx.gl.glClearColor(1, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             batch.begin();
