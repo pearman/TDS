@@ -51,11 +51,8 @@ public class TDS extends ApplicationAdapter {
             
             sprite.setX(posx);
             sprite.setY(posy);
-<<<<<<< HEAD
             
-=======
             sprite.setRotation((float)Math.toDegrees(angle));
->>>>>>> ed2803c9087b63e763e802f2d33f3ceb57e1194e
             Gdx.gl.glClearColor(1, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
             batch.begin();
