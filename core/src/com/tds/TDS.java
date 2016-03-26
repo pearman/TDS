@@ -12,51 +12,55 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.files.FileHandle;
 
-public class TDS extends ApplicationAdapter {
-	SpriteBatch batch;
-        Sprite sprite;
-	Texture img;
-        float posx;
-        float posy;
-        float mouseX, mouseY;
-        float speed;
-	
-	@Override
-	public void create () {
-            batch = new SpriteBatch();
-            img = new Texture("badlogic.jpg");
-            sprite = new Sprite(img, 0, 0, 64, 64);
-            posx = 0;
-            posy = 0;
-            speed = 6;
-	}
+import com.tds.HUD;
 
-	@Override
-	public void render () {
-            mouseX = Gdx.input.getX();
-            mouseY = Gdx.input.getY();
-            
-            if(Gdx.input.isKeyPressed(Keys.A))
-                posx -= speed;
-            if(Gdx.input.isKeyPressed(Keys.D))
-                posx += speed;
-            if(Gdx.input.isKeyPressed(Keys.W)) 
-                posy += speed;
-            if(Gdx.input.isKeyPressed(Keys.S)) 
-                posy -= speed;
-            
-            float dirX = mouseX - posx;
-            float dirY = mouseY - posy;
-            double angle = Math.atan2(dirX, dirY);
-            
-            sprite.setX(posx);
-            sprite.setY(posy);
-            
-            sprite.setRotation((float)Math.toDegrees(angle));
-            Gdx.gl.glClearColor(1, 0, 0, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-            batch.begin();
-            sprite.draw(batch);
-            batch.end();
-        }
+public class TDS extends ApplicationAdapter {
+    HUD hud;
+    SpriteBatch batch;
+    Sprite sprite;
+    Texture img;
+    float posx;
+    float posy;
+    float mouseX, mouseY;
+    float speed;
+
+    @Override
+    public void create () {
+        hud = new HUD();
+        batch = new SpriteBatch();
+        img = new Texture("badlogic.jpg");
+        sprite = new Sprite(img, 0, 0, 64, 64);
+        posx = 0;
+        posy = 0;
+        speed = 6;
+    }
+
+    @Override
+    public void render () {
+        mouseX = Gdx.input.getX();
+        mouseY = Gdx.input.getY();
+
+        if(Gdx.input.isKeyPressed(Keys.A))
+            posx -= speed;
+        if(Gdx.input.isKeyPressed(Keys.D))
+            posx += speed;
+        if(Gdx.input.isKeyPressed(Keys.W)) 
+            posy += speed;
+        if(Gdx.input.isKeyPressed(Keys.S)) 
+            posy -= speed;
+
+        float dirX = mouseX - posx;
+        float dirY = mouseY - posy;
+        double angle = Math.atan2(dirX, dirY);
+
+        sprite.setX(posx);
+        sprite.setY(posy);
+
+        sprite.setRotation((float)Math.toDegrees(angle));
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        sprite.draw(batch);
+        batch.end();
+    }
 }

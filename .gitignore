@@ -57,7 +57,7 @@ nb-configuration.xml
 ## Gradle
 
 .gradle
-.nb-gradle/
+.nb-gradle/*
 gradle-app.setting
 build/
 

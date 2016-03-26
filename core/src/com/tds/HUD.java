@@ -9,6 +9,6 @@ package com.tds;
  *
  * @author mattb
  */
-public class hud {
+public class HUD {
     
 }
