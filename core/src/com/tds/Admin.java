@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 package com.tds;
-
-import com.tds.Intity;
 /**
  *
  * @author mattb
  */
-public class Admin extends Intity{   
+public class Admin extends Entity{   
     float strength;
     int lives;
 
