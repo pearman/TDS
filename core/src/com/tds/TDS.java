@@ -24,6 +24,7 @@ public class TDS extends ApplicationAdapter {
     float mouseX, mouseY;
     float speed;
     BitmapFont pen;
+    Virus v1;
 
     @Override
     public void create () {
@@ -35,6 +36,9 @@ public class TDS extends ApplicationAdapter {
         posx = Gdx.graphics.getWidth()/2 - admin.getWidth()/2;
         posy = Gdx.graphics.getHeight()/2 - admin.getHeight()/2;
         admin.setPosition(posx, posy);
+        
+        v1 = new Virus();
+        v1.setPosition(40, 40);
         
         pen = new BitmapFont();
         pen.setColor(Color.BLACK);
@@ -48,8 +52,11 @@ public class TDS extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         batch.begin();
+        if(admin.checkCollision(v1)){
+            pen.draw(batch, "Hit", 50, 470);
+        }
         admin.draw(batch);
-
+        v1.draw(batch);
         batch.end();
     }
 }

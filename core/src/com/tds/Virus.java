@@ -4,14 +4,18 @@
  * and open the template in the editor.
  */
 package com.tds;
+
+import com.badlogic.gdx.graphics.Texture;
+
 /**
  *
  * @author mattb
  */
 public class Virus extends Entity{
 
-    public Virus(float health, float speed) {
-        super(health, speed);
+    public Virus() {
+        super(1, 200, new Texture("bluevirus.jpg"), 0, 0, 32, 32);
+        
     }
     
 }

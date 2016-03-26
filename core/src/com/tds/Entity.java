@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package com.tds;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-
+import com.badlogic.gdx.math.Circle;
 /**
  *
  * @author mattb
@@ -13,17 +14,28 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class Entity extends Sprite{
     float health;
     float speed;
+    Circle boundingCircle;
 
+    public Entity(float health, float speed, Texture texture, 
+            int srcX, int srcY, int srcWidth, int srcHeight) {
+        super(texture, srcX, srcY, srcWidth, srcHeight);
+        boundingCircle = new Circle(getX(), getY(), srcWidth);
+        this.health = health;
+        this.speed = speed;
+    }
+
+   
     public Entity(float health, float speed) {
+        super();
         this.health = health;
         this.speed = speed;
     }    
 
-    public float getHeath() {
+    public float getHealth() {
         return health;
     }
 
-    public void setHeath(float heath) {
+    public void setHealth(float heath) {
         this.health = heath;
     }
 
