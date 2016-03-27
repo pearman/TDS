@@ -57,6 +57,11 @@ public class HUD {
         totalScore = newTotal;
     }
     
+    public void gameOver(SpriteBatch batch, BitmapFont pen) {
+        pen.draw(batch, "GAME OVER", Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth()/2);
+        
+    }
+    
     /**
      * @author KeisterBun
      * @param batch
