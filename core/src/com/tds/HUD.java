@@ -5,6 +5,10 @@
  */
 package com.tds;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 /**
  *
  * @author mattb
@@ -12,6 +16,8 @@ package com.tds;
 public class HUD {
     private int totalScore;
     private int currentLevel;
+    private final String level = "Level: ";
+    private final String score = "Score: ";
     
     /**
      * @author KeisterBun
@@ -49,5 +55,15 @@ public class HUD {
      */
     public void setTotalScore(int newTotal) {
         totalScore = newTotal;
+    }
+    
+    /**
+     * @author KeisterBun
+     * @param batch
+     * @param pen 
+     */
+    public void drawHud(SpriteBatch batch, BitmapFont pen) {
+        pen.draw(batch, score.concat(Integer.toString(totalScore)), 20, Gdx.graphics.getHeight()-20);
+        pen.draw(batch, level.concat(Integer.toString(currentLevel)), 20, Gdx.graphics.getHeight()-40);
     }
 }
