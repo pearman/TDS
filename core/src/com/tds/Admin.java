@@ -28,7 +28,7 @@ public class Admin extends Entity{
             Texture texture) {
         super(health, speed, texture, 0, 0, 256, 256);
         
-        setScale(0.5f);
+        setScale(0.25f);
         
         this.lives = lives;
         bullets = new ParticleSystem(texture);
@@ -79,15 +79,6 @@ public class Admin extends Entity{
             keyPressed = true;
             this.setY(this.getY() - Gdx.graphics.getDeltaTime() * getSpeed());
         }
-        
-        if(getX() > Gdx.graphics.getWidth())
-            setX(Gdx.graphics.getWidth());
-        if(getX() < 0)
-            setX(0);
-        if(getY() < 0)
-            setY(0);
-        if(getY() > Gdx.graphics.getHeight())
-            setY(Gdx.graphics.getHeight());
         
         float dirX =  mouseX - getX() - getWidth()/2;
         float dirY =  mouseY - getY() - getHeight()/2;

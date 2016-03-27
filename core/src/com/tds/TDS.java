@@ -76,7 +76,7 @@ public class TDS extends ApplicationAdapter {
     public void render () {
         admin.processMovement();   
         
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
