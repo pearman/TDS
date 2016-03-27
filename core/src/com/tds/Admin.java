@@ -60,7 +60,7 @@ public class Admin extends Entity{
         this.lives = lives;
     }
     
-    public void processMovement(){
+    public void processMovement(ArrayList<Virus> enemies){
         oldX = getX();
         oldY = getY();
         this.setOriginCenter();
@@ -119,7 +119,7 @@ public class Admin extends Entity{
         
         //setRotation((float)Math.toDegrees(angle));
         
-        bullets.process();
+        bullets.process(enemies);
     }
     
     void draw(SpriteBatch batch) {
