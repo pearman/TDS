@@ -14,8 +14,11 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Virus extends Entity{
 
+    boolean alive;
+    
     public Virus(Texture texture) {
         super(1, 200, texture, 0, 0, 32, 32);
+        alive = true;
         //setX(100);
         //setY(100);        
     }
@@ -24,6 +27,7 @@ public class Virus extends Entity{
         super(1, speed, texture, 0, 0, 32, 32);
         setX(startx);
         setY(starty);
+        alive = true;
     }
     
     /**
@@ -40,6 +44,14 @@ public class Virus extends Entity{
         x = (float)Math.cos(angle + 90f) * getSpeed() * Gdx.graphics.getDeltaTime();
         y = (float)Math.sin(angle + 90f) * getSpeed() * Gdx.graphics.getDeltaTime();
         this.translate(x, y);
+    }
+    
+    public void setStatus(boolean status) {
+        alive = status;
+    }
+    
+    public boolean getStatus() {
+        return alive;
     }
     
 }
