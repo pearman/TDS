@@ -59,6 +59,7 @@ public class TDS extends ApplicationAdapter {
         
         pen = new BitmapFont();
         pen.setColor(Color.YELLOW);
+
         
         walls = new Wall[4];
         
@@ -96,8 +97,8 @@ public class TDS extends ApplicationAdapter {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             System.exit(0);
         }
-                
         hud.setCurrentLives(admin.getLives());
+
         
         batch.begin();
         for(Wall wall : walls){

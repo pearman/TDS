@@ -83,5 +83,4 @@ public class HUD {
         this.currentLives = currentLives;
     }
     
-    
 }
