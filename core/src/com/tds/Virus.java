@@ -5,6 +5,7 @@
  */
 package com.tds;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -15,8 +16,8 @@ public class Virus extends Entity{
 
     public Virus(Texture texture) {
         super(1, 200, texture, 0, 0, 32, 32);
-        setX(100);
-        setY(100);        
+        //setX(100);
+        //setY(100);        
     }
     
     public Virus(Texture texture, float speed, int startx, int starty ) {
@@ -36,8 +37,8 @@ public class Virus extends Entity{
         double angle = Math.atan2(-dirX, dirY);
         float x, y;
         
-        x = (float)Math.cos(angle + 90f) * getSpeed();
-        y = (float)Math.sin(angle + 90f) * getSpeed();
+        x = (float)Math.cos(angle + 90f) * getSpeed() * Gdx.graphics.getDeltaTime();
+        y = (float)Math.sin(angle + 90f) * getSpeed() * Gdx.graphics.getDeltaTime();
         this.translate(x, y);
     }
     
