@@ -96,7 +96,10 @@ public class TDS extends ApplicationAdapter {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             System.exit(0);
         }
-                
+        
+        for(Wall wall : walls){
+            admin.wallCollison(wall);
+        }                
         
         batch.begin();
         for(Wall wall : walls){
@@ -113,7 +116,6 @@ public class TDS extends ApplicationAdapter {
             v.draw(batch);
             v.move(admin.getX() + admin.getWidth()/2, 
                     admin.getY() + admin.getHeight()/2);
-            if
         }
         //v1.draw(batch);
         //v1.move(admin.getX(), admin.getY());
