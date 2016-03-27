@@ -41,7 +41,7 @@ public class TDS extends ApplicationAdapter {
         
         background = new Texture("background.png");
         
-        admin = new Admin(1, 3, 1, 200, img);
+        admin = new Admin(1, 3, 1, 300, img);
         posx = Gdx.graphics.getWidth()/2 - admin.getWidth()/2;
         posy = Gdx.graphics.getHeight()/2 - admin.getHeight()/2;
         admin.setPosition(posx, posy);
