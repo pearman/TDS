@@ -152,7 +152,7 @@ public class TDS extends ApplicationAdapter {
     void generateLevel(int levelNumber){
         int numberVirus = levelNumber*2 + levelNumber;
         for(int i = 0; i < numberVirus; i++) {
-            v1 = new Virus(virusTexture);
+            v1 = new Virus(virusTexture, levelNumber);
             virusList.add(v1);
         }
         Random rand = new Random();

@@ -47,10 +47,18 @@ public class ParticleSystem {
             if(particles.get(i).health <= 0) {
                 particles.remove(i);
             }
+            try{
             for(Virus e: enemies) {
-                if(e.getBoundingRectangle().overlaps(particles.get(i).getBoundingRectangle()))
+                if(e.getBoundingRectangle().overlaps(particles.get(i).getBoundingRectangle())){
                     e.alive = false;
+                    
+                        particles.get(i).health = 0;
+                    
+                }
             }
+            } catch(Exception t){
+                        
+                    }
         }
     }
     

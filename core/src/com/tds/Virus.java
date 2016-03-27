@@ -7,6 +7,7 @@ package com.tds;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import java.util.Random;
 
 /**
  *
@@ -16,8 +17,10 @@ public class Virus extends Entity{
 
     boolean alive;
     
-    public Virus(Texture texture) {
+    public Virus(Texture texture, int level) {
         super(1, 200, texture, 0, 0, 32, 32);
+        Random rand = new Random();
+        speed = 200 + level*20 + rand.nextInt()%40;
         alive = true;
         //setX(100);
         //setY(100);        
