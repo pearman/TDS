@@ -15,7 +15,14 @@ public class Virus extends Entity{
 
     public Virus(Texture texture) {
         super(1, 200, texture, 0, 0, 32, 32);
-        
+        setX(100);
+        setY(100);        
+    }
+    
+    public Virus(Texture texture, float speed, int startx, int starty ) {
+        super(1, speed, texture, 0, 0, 32, 32);
+        setX(startx);
+        setY(starty);
     }
     
     /**
