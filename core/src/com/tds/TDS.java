@@ -106,6 +106,10 @@ public class TDS extends ApplicationAdapter {
         }
         admin.draw(batch);
         admin.bullets.draw(batch);
+        
+        for(Wall wall : walls){
+            admin.wallCollison(wall);
+        }
 
         for(Virus v : virusList) {
             v.draw(batch);
