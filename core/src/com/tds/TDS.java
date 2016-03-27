@@ -21,6 +21,7 @@ public class TDS extends ApplicationAdapter {
     SpriteBatch batch;
     Admin admin;
     Texture img;
+    Texture background;
     float posx;
     float posy;
     float mouseX, mouseY;
@@ -37,6 +38,8 @@ public class TDS extends ApplicationAdapter {
         hud = new HUD();
         batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
+        
+        background = new Texture("background.png");
         
         admin = new Admin(1, 3, 1, 200, img);
         posx = Gdx.graphics.getWidth()/2 - admin.getWidth()/2;
@@ -101,9 +104,10 @@ public class TDS extends ApplicationAdapter {
         }
         
         batch.begin();
+        batch.draw(background, 0, 0);
         for(Wall wall : walls){
             if(wall != null){
-                wall.draw(batch);
+                //wall.draw(batch);
             }
         }
         
