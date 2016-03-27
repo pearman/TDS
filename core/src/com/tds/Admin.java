@@ -11,6 +11,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +23,8 @@ public class Admin extends Entity{
     ParticleSystem bullets;
     float aTimer = 0;
     int frame = 0;
+    float oldX, oldY;
+    
     ArrayList<Texture> textures = new ArrayList<Texture>();
 
     public Admin(float strength, int lives, float health, float speed, 
@@ -58,6 +61,8 @@ public class Admin extends Entity{
     }
     
     public void processMovement(){
+        oldX = getX();
+        oldY = getY();
         this.setOriginCenter();
         float mouseX = Gdx.input.getX();
         float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
@@ -119,5 +124,15 @@ public class Admin extends Entity{
     
     void draw(SpriteBatch batch) {
         super.draw(batch);
+    }
+    
+    void wallCollison(Wall wall){
+        Rectangle r1 = wall.getBoundingRectangle();
+        Rectangle r2 = this.getBoundingRectangle();
+        
+        if(r1.overlaps(r2)){
+            setX(oldX);
+            setY(oldY);
+        }
     }
 }
