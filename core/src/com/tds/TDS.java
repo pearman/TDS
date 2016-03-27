@@ -111,15 +111,10 @@ public class TDS extends ApplicationAdapter {
             }
         }
         
-        admin.draw(batch);
-        admin.bullets.draw(batch);
-
-        for(Virus v : virusList) {
-            v.draw(batch);
+        for(Virus v : virusList){
             v.move(admin.getX() + admin.getWidth()/2, 
                     admin.getY() + admin.getHeight()/2);
             if( admin.getBoundingRectangle().overlaps(v.getBoundingRectangle()) ) {
-                System.out.println("hit");
                 v.setStatus(false);
                 admin.setPosition(Gdx.graphics.getWidth()/2, 
                         Gdx.graphics.getHeight()/2);
@@ -128,6 +123,13 @@ public class TDS extends ApplicationAdapter {
                     System.exit(0);
                 }
             }
+        }
+        
+        admin.draw(batch);
+        admin.bullets.draw(batch);
+
+        for(Virus v : virusList) {
+            v.draw(batch);
         }
         
         //v1.draw(batch);

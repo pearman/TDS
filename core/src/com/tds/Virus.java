@@ -20,8 +20,9 @@ public class Virus extends Entity{
     public Virus(Texture texture, int level) {
         super(1, 200, texture, 0, 0, 128, 128);
         Random rand = new Random();
-        speed = 200 + level*20 + rand.nextInt()%40;        
+        speed = 200 + level*20 + (rand.nextInt()%60 - 30);        
         setScale(0.75f);
+        setHealth((int)Math.log10(level) + 1);
 
         alive = true;
         //setX(100);

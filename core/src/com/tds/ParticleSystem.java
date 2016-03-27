@@ -50,10 +50,11 @@ public class ParticleSystem {
             try{
             for(Virus e: enemies) {
                 if(e.getBoundingRectangle().overlaps(particles.get(i).getBoundingRectangle())){
-                    e.alive = false;
-                    
-                        particles.get(i).health = 0;
-                    
+                    e.setHealth(e.getHealth() - 1);
+                    if(e.getHealth() <= 0){
+                        e.alive = false;
+                    }
+                    particles.get(i).health = 0;
                 }
             }
             } catch(Exception t){
