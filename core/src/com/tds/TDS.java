@@ -14,6 +14,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TDS extends ApplicationAdapter {
     HUD hud;
@@ -25,6 +26,7 @@ public class TDS extends ApplicationAdapter {
     float posy;
     float mouseX, mouseY;
     float speed;
+    int level;
     BitmapFont pen;
     Texture virusTexture;
     Virus v1;
@@ -48,16 +50,9 @@ public class TDS extends ApplicationAdapter {
         virusTexture = new Texture("virus.png");
         
         virusList = new ArrayList<Virus>();
-        for(int i = 0; i < 4; i++) {
-            v1 = new Virus(virusTexture);
-            virusList.add(v1);
-        }
+        level = 1;
         
-        virusList.get(0).setPosition(40, 40);
-        virusList.get(1).setPosition(40, Gdx.graphics.getHeight() - 40);
-        virusList.get(2).setPosition(Gdx.graphics.getWidth() - 40, 40);
-        virusList.get(3).setPosition(Gdx.graphics.getWidth() - 40, 
-                Gdx.graphics.getHeight() -40);
+        generateLevel(level);
         //v1 = new Virus(virusTexture);
         //v1.setPosition(40, 40);
         
@@ -102,6 +97,7 @@ public class TDS extends ApplicationAdapter {
             System.exit(0);
         }
         hud.setCurrentLives(admin.getLives());
+        
 
         for(Wall wall : walls){
             admin.wallCollison(wall);
@@ -141,12 +137,46 @@ public class TDS extends ApplicationAdapter {
         batch.end();
         for(int i = virusList.size() - 1; i >= 0; i-- ) {
             if(virusList.get(i).getStatus() != true) {
-                virusList.remove(virusList.get(i));
+                hud.setTotalScore(hud.getTotalScore() + 1);
+                virusList.remove(virusList.get(i));                
             }
         }
         
         if(virusList.size() == 0){
-            System.exit(0);
+            level += 1;
+            hud.incrementCurrentLevel();
+            generateLevel(level);
+        }
+    }
+    
+    void generateLevel(int levelNumber){
+        int numberVirus = levelNumber*2 + levelNumber;
+        for(int i = 0; i < numberVirus; i++) {
+            v1 = new Virus(virusTexture);
+            virusList.add(v1);
+        }
+        Random rand = new Random();
+        for(Virus v : virusList){
+            int pos = rand.nextInt() % 4;
+            switch(pos){
+                case 0:
+                    v.setPosition(40, 40);
+                    break;
+                case 1:
+                    v.setPosition(40, Gdx.graphics.getHeight() - 40);
+                    break;
+                case 2:
+                    v.setPosition(Gdx.graphics.getWidth() - 40, 40);
+                    break;
+                case 3:
+                    v.setPosition(Gdx.graphics.getWidth() - 40, 
+                        Gdx.graphics.getHeight() -40);
+                    break;
+                default:
+                    v.setPosition(Gdx.graphics.getWidth() - 40, 
+                        Gdx.graphics.getHeight() -40);
+                    break;
+            }       
         }
     }
 }
