@@ -7,9 +7,8 @@ package com.tds;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Circle;
 
 /**
  *
@@ -63,9 +62,8 @@ public class Admin extends Entity{
     }
     
     public Boolean checkCollision(Entity e){
-        Rectangle r1 = e.getBoundingRectangle();
-        Rectangle r2 = e.getBoundingRectangle();
-        
-        return r2.overlaps(r1);
+        Circle c1 = e.getBoundingCircle();
+        Circle c2 = this.getBoundingCircle();
+        return c1.overlaps(c2);
     }
 }

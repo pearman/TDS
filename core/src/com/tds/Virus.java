@@ -13,8 +13,8 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Virus extends Entity{
 
-    public Virus() {
-        super(1, 200, new Texture("bluevirus.jpg"), 0, 0, 32, 32);
+    public Virus(Texture texture) {
+        super(1, 200, texture, 0, 0, 32, 32);
         
     }
     
