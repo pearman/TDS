@@ -58,7 +58,7 @@ public class TDS extends ApplicationAdapter {
         //v1.setPosition(40, 40);
         
         pen = new BitmapFont();
-        pen.setColor(Color.BLACK);
+        pen.setColor(Color.YELLOW);
         
         walls = new Wall[4];
         
@@ -97,6 +97,7 @@ public class TDS extends ApplicationAdapter {
             System.exit(0);
         }
                 
+        hud.setCurrentLives(admin.getLives());
         
         batch.begin();
         for(Wall wall : walls){
