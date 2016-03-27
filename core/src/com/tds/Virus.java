@@ -17,7 +17,8 @@ public class Virus extends Entity{
     boolean alive;
     
     public Virus(Texture texture) {
-        super(1, 200, texture, 0, 0, 32, 32);
+        super(1, 200, texture, 0, 0, 128, 128);
+        setScale(0.75f);
         alive = true;
         //setX(100);
         //setY(100);        

@@ -26,6 +26,7 @@ public class TDS extends ApplicationAdapter {
     float mouseX, mouseY;
     float speed;
     BitmapFont pen;
+    Texture virusTexture;
     Virus v1;
     ArrayList<Virus> virusList;
     Wall[] walls;
@@ -44,7 +45,7 @@ public class TDS extends ApplicationAdapter {
         admin.setPosition(posx, posy);
         admin.scale(.2f);
         
-        Texture virusTexture = new Texture("bluevirus.jpg");
+        virusTexture = new Texture("virus.png");
         
         virusList = new ArrayList<Virus>();
         for(int i = 0; i < 4; i++) {
