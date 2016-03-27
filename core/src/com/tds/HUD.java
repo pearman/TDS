@@ -16,8 +16,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class HUD {
     private int totalScore;
     private int currentLevel;
+    private int currentLives;
     private final String level = "Level: ";
     private final String score = "Score: ";
+    private final String lives = "Lives: ";
     
     /**
      * @author KeisterBun
@@ -70,5 +72,16 @@ public class HUD {
     public void drawHud(SpriteBatch batch, BitmapFont pen) {
         pen.draw(batch, score.concat(Integer.toString(totalScore)), 20, Gdx.graphics.getHeight()-20);
         pen.draw(batch, level.concat(Integer.toString(currentLevel)), 20, Gdx.graphics.getHeight()-40);
+        pen.draw(batch, lives.concat(Integer.toString(currentLives)), 20, Gdx.graphics.getHeight()-60);
     }
+
+    public int getCurrentLives() {
+        return currentLives;
+    }
+
+    public void setCurrentLives(int currentLives) {
+        this.currentLives = currentLives;
+    }
+    
+    
 }
