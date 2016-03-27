@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,6 +9,9 @@ package com.tds;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,21 +20,33 @@ import com.badlogic.gdx.graphics.Texture;
 public class Admin extends Entity{   
     int lives;
     ParticleSystem bullets;
+    float aTimer = 0;
+    int frame = 0;
+    ArrayList<Texture> textures = new ArrayList<Texture>();
 
     public Admin(float strength, int lives, float health, float speed, 
             Texture texture) {
-        super(health, speed, texture, 0, 0, 64, 64);
-        setOriginCenter();
+        super(health, speed, texture, 0, 0, 256, 256);
+        
+        setScale(0.5f);
+        
         this.lives = lives;
         bullets = new ParticleSystem(texture);
+        textures.add(new Texture("frontBase.png"));
+        textures.add(new Texture("frontLeft.png"));
+        textures.add(new Texture("frontRight.png"));
+        textures.add(new Texture("sideBase.png"));
+        textures.add(new Texture("sideLeft.png"));
+        textures.add(new Texture("sideRight.png"));
+        textures.add(new Texture("backBase.png"));
+        
+        setTexture(textures.get(0));
     }
 
     
     public Admin(float strength, int lives, float health, float speed) {
         super(health, speed);
         this.lives = lives;
-        
-        this.setRegion(0, 0, 64, 64);
     }
 
     public int getLives() {
@@ -42,30 +58,76 @@ public class Admin extends Entity{
     }
     
     public void processMovement(){
+        this.setOriginCenter();
         float mouseX = Gdx.input.getX();
         float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
         
-        if(Gdx.input.isKeyPressed(Input.Keys.A))
+        boolean keyPressed = false;
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            keyPressed = true;
             this.setX(this.getX() - Gdx.graphics.getDeltaTime() * getSpeed());
-        if(Gdx.input.isKeyPressed(Input.Keys.D))
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
+            keyPressed = true;
             this.setX(this.getX() + Gdx.graphics.getDeltaTime() * getSpeed());
-        if(Gdx.input.isKeyPressed(Input.Keys.W)) 
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+            keyPressed = true;
             this.setY(this.getY() + Gdx.graphics.getDeltaTime() * getSpeed());
-        if(Gdx.input.isKeyPressed(Input.Keys.S)) 
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
+            keyPressed = true;
             this.setY(this.getY() - Gdx.graphics.getDeltaTime() * getSpeed());
+        }
+        
+        if(getX() > Gdx.graphics.getWidth())
+            setX(Gdx.graphics.getWidth());
+        if(getX() < 0)
+            setX(0);
+        if(getY() < 0)
+            setY(0);
+        if(getY() > Gdx.graphics.getHeight())
+            setY(Gdx.graphics.getHeight());
         
         float dirX =  mouseX - getX() - getWidth()/2;
         float dirY =  mouseY - getY() - getHeight()/2;
         double angle = Math.atan2(-dirX, dirY);
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
-            bullets.shoot(4, 0.1f, getRotation(), getX(), getY(), 20);
+            bullets.shoot(4, 0.1f, (float)Math.toDegrees(angle), getX() + 100, getY() + 100, 20);
                 
         this.boundingCircle.setPosition(this.getX(), this.getY());
         
-        setRotation((float)Math.toDegrees(angle));
+        if(keyPressed) {
+            aTimer += Gdx.graphics.getDeltaTime();
+            if(aTimer > 0.1f) {
+                frame = (frame + 1) % 3;
+                System.out.println(frame);
+                aTimer = 0;
+            }
+        }
+        
+        float range = (float)(Math.PI/4);
+        if(Math.abs(angle - 0) < range) {
+            setTexture(textures.get(6));
+        }
+        if(Math.abs(angle - Math.PI/2) < range) { 
+            setTexture(textures.get(3 + frame));
+            setFlip(true, false);
+        }
+        if(Math.abs(angle - Math.PI) < range) { 
+            setTexture(textures.get(0 + frame));
+        }
+        if(Math.abs(angle + Math.PI / 2) < range) { 
+            setTexture(textures.get(3 + frame));
+            setFlip(false, false);
+        }
+        
+        //setRotation((float)Math.toDegrees(angle));
         
         bullets.process();
     }
     
-    
+    void draw(SpriteBatch batch) {
+        super.draw(batch);
+    }
 }
