@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class ParticleSystem {
     float vx, vy;
+    float rateTimer = 0;
     Texture texture;
     ArrayList<Entity> particles = new ArrayList<Entity>();
     
@@ -23,20 +24,24 @@ public class ParticleSystem {
         texture = pTex;
     }
     
-    void shoot(float secondsOfLife, float angle, float x, float y, float speed) {
-        Entity e = new Entity(secondsOfLife, speed, texture, 0, 0, 64, 64);;
-        e.setTexture(texture);
-        e.vx = (float)Math.cos(Math.toRadians(angle) + (float)(Math.PI / 2)) * speed;
-        e.vy = (float)Math.sin(Math.toRadians(angle) + (float)(Math.PI / 2)) * speed;
-        e.health = secondsOfLife;
-        e.setRotation(angle);
-        e.setPosition(x, y);
-        particles.add(e);
+    void shoot(float secondsOfLife, float fireRate, float angle, float x, float y, float speed) {
+        if(rateTimer > fireRate) {
+            Entity e = new Entity(secondsOfLife, speed, texture, 0, 0, 64, 64);;
+            e.setTexture(texture);
+            e.vx = (float)Math.cos(Math.toRadians(angle) + (float)(Math.PI / 2)) * speed;
+            e.vy = (float)Math.sin(Math.toRadians(angle) + (float)(Math.PI / 2)) * speed;
+            e.health = secondsOfLife;
+            e.setRotation(angle);
+            e.setPosition(x, y);
+            particles.add(e);
+            rateTimer = 0;
+        }
     }
     
     void process() {
+        float time = Gdx.graphics.getDeltaTime();
+        rateTimer += time;
         for(int i = particles.size() - 1; i >= 0; i--) {
-            float time = Gdx.graphics.getDeltaTime();
             particles.get(i).translate(particles.get(i).vx, particles.get(i).vy);
             System.out.println(particles.get(i).getX());
             particles.get(i).health -= time;

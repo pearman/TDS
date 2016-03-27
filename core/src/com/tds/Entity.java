@@ -16,6 +16,10 @@ public class Entity extends Sprite{
     float speed;
     float vx, vy;
     Circle boundingCircle;
+
+    public Circle getBoundingCircle() {
+        return boundingCircle;
+    }
     
     public Entity(float health, float speed, Texture texture, 
             int srcX, int srcY, int srcWidth, int srcHeight) {
