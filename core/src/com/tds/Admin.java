@@ -54,6 +54,12 @@ public class Admin extends Entity{
         if(Gdx.input.isKeyPressed(Input.Keys.S)) 
             this.setY(this.getY() - Gdx.graphics.getDeltaTime() * getSpeed());
         
+        if(getX() > Gdx.graphics.getWidth())
+            setX(Gdx.graphics.getWidth());
+        if(getX() < 0)
+            setX(0);
+        
+        
         float dirX =  mouseX - getX() - getWidth()/2;
         float dirY =  mouseY - getY() - getHeight()/2;
         double angle = Math.atan2(-dirX, dirY);
@@ -67,10 +73,5 @@ public class Admin extends Entity{
         bullets.process();
     }
     
-//    public Boolean checkCollision(Entity e){
-//        //Circle c1 = e.getBoundingCircle();
-//        //Circle c2 = this.getBoundingCircle();
-//        //return c1.overlaps(c2);
-//    }
-//}
+    
 }
