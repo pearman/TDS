@@ -58,4 +58,10 @@ public class Entity extends Sprite{
         }
         return false;
     }
+    
+    public Boolean checkCollision(Entity e){
+        Circle c1 = e.getBoundingCircle();
+        Circle c2 = this.getBoundingCircle();
+        return c1.overlaps(c2);
+    }
 }
