@@ -38,7 +38,8 @@ public class TDS extends ApplicationAdapter {
         admin.setPosition(posx, posy);
         admin.scale(.2f);
         
-        v1 = new Virus();
+        Texture virusTexture = new Texture("bluevirus.jpg");
+        v1 = new Virus(virusTexture);
         v1.setPosition(40, 40);
         
         pen = new BitmapFont();
@@ -49,13 +50,10 @@ public class TDS extends ApplicationAdapter {
     public void render () {
         admin.processMovement();   
         
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         batch.begin();
-        if(admin.checkCollision(v1)){
-            pen.draw(batch, "Hit", 50, 470);
-        }
         admin.draw(batch);
         v1.draw(batch);
         batch.end();
