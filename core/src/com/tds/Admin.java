@@ -53,12 +53,12 @@ public class Admin extends Entity{
             this.setY(this.getY() + Gdx.graphics.getDeltaTime() * getSpeed());
         if(Gdx.input.isKeyPressed(Input.Keys.S)) 
             this.setY(this.getY() - Gdx.graphics.getDeltaTime() * getSpeed());
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+            bullets.shoot(4, 0.1f, getRotation(), getX(), getY(), 20);
         
         float dirX =  mouseX - getX() - getWidth()/2;
         float dirY =  mouseY - getY() - getHeight()/2;
         double angle = Math.atan2(-dirX, dirY);
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
-            bullets.shoot(4, getRotation(), getX(), getY(), 20);
                 
         this.boundingCircle.setPosition(this.getX(), this.getY());
         
