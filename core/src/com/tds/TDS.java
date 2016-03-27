@@ -99,6 +99,9 @@ public class TDS extends ApplicationAdapter {
         }
         hud.setCurrentLives(admin.getLives());
 
+        for(Wall wall : walls){
+            admin.wallCollison(wall);
+        }
         
         batch.begin();
         for(Wall wall : walls){
@@ -106,9 +109,7 @@ public class TDS extends ApplicationAdapter {
                 wall.draw(batch);
             }
         }
-        for(Wall wall : walls){
-            admin.wallCollison(wall);
-        }
+        
         admin.draw(batch);
         admin.bullets.draw(batch);
 
@@ -127,15 +128,20 @@ public class TDS extends ApplicationAdapter {
                 }
             }
         }
-        for(int i = virusList.size() - 1; i >= 0; i-- ) {
-            if(virusList.get(i).getStatus() != true) {
-                virusList.remove(virusList.get(i));
-            }
-        }
+        
         //v1.draw(batch);
         //v1.move(admin.getX(), admin.getY());
         hud.drawHud(batch, pen);
         
         batch.end();
+        for(int i = virusList.size() - 1; i >= 0; i-- ) {
+            if(virusList.get(i).getStatus() != true) {
+                virusList.remove(virusList.get(i));
+            }
+        }
+        
+        if(virusList.size() == 0){
+            System.exit(0);
+        }
     }
 }
