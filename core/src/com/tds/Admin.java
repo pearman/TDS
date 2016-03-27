@@ -101,7 +101,6 @@ public class Admin extends Entity{
             aTimer += Gdx.graphics.getDeltaTime();
             if(aTimer > 0.1f) {
                 frame = (frame + 1) % 3;
-                System.out.println(frame);
                 aTimer = 0;
             }
         }
