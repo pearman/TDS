@@ -16,11 +16,13 @@ import java.util.Random;
 public class Virus extends Entity{
 
     boolean alive;
-    
+
     public Virus(Texture texture, int level) {
-        super(1, 200, texture, 0, 0, 32, 32);
+        super(1, 200, texture, 0, 0, 128, 128);
         Random rand = new Random();
-        speed = 200 + level*20 + rand.nextInt()%40;
+        speed = 200 + level*20 + rand.nextInt()%40;        
+        setScale(0.75f);
+
         alive = true;
         //setX(100);
         //setY(100);        

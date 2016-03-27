@@ -28,10 +28,10 @@ public class TDS extends ApplicationAdapter {
     float speed;
     int level;
     BitmapFont pen;
+    Texture virusTexture;
     Virus v1;
     ArrayList<Virus> virusList;
     Wall[] walls;
-    Texture virusTexture;
     
     @Override
     public void create () {
@@ -47,7 +47,7 @@ public class TDS extends ApplicationAdapter {
         admin.setPosition(posx, posy);
         admin.scale(.2f);
         
-        virusTexture = new Texture("bluevirus.jpg");
+        virusTexture = new Texture("virus.png");
         
         virusList = new ArrayList<Virus>();
         level = 1;
