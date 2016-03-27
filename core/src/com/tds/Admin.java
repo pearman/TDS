@@ -54,13 +54,13 @@ public class Admin extends Entity{
         if(Gdx.input.isKeyPressed(Input.Keys.S)) 
             this.setY(this.getY() - Gdx.graphics.getDeltaTime() * getSpeed());
         
-        if(getX() > Gdx.graphics.getWidth())
+        if(getX() - getWidth()/2 > Gdx.graphics.getWidth())
             setX(Gdx.graphics.getWidth());
-        if(getX() < 0)
+        if(getX() - getWidth()/2 < 0)
             setX(0);
-        if(getY() < 0)
+        if(getY() - getHeight()/2< 0)
             setY(0);
-        if(getY() > Gdx.graphics.getHeight())
+        if(getY() - getHealth()/2 > Gdx.graphics.getHeight())
             setY(Gdx.graphics.getHeight());
         
         float dirX =  mouseX - getX() - getWidth()/2;
