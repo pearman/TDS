@@ -88,7 +88,7 @@ public class TDS extends ApplicationAdapter {
 
     @Override
     public void render () {
-        admin.processMovement();   
+        admin.processMovement(virusList);   
         //v1.move(admin.getX() + admin.getWidth()/2, 
           //      admin.getY() + admin.getHeight()/2);
         Gdx.gl.glClearColor(.1f, .1f, .1f, 1);

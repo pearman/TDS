@@ -38,7 +38,7 @@ public class ParticleSystem {
         }
     }
     
-    void process() {
+    void process(ArrayList<Virus> enemies) {
         float time = Gdx.graphics.getDeltaTime();
         rateTimer += time;
         for(int i = particles.size() - 1; i >= 0; i--) {
@@ -46,6 +46,10 @@ public class ParticleSystem {
             particles.get(i).health -= time;
             if(particles.get(i).health <= 0) {
                 particles.remove(i);
+            }
+            for(Virus e: enemies) {
+                if(e.getBoundingRectangle().overlaps(particles.get(i).getBoundingRectangle()))
+                    e.alive = false;
             }
         }
     }
