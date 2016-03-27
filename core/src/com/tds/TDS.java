@@ -26,9 +26,9 @@ public class TDS extends ApplicationAdapter {
     float speed;
     BitmapFont pen;
     Virus v1;
-    Virus[] virusList;
+    ArrayList<Virus> virusList;
     Wall[] walls;
-
+    
     @Override
     public void create () {
         hud = new HUD();
@@ -43,19 +43,19 @@ public class TDS extends ApplicationAdapter {
         
         Texture virusTexture = new Texture("bluevirus.jpg");
         
-        virusList = new Virus[4];
-        virusList[0] = new Virus(virusTexture);
-        virusList[1] = new Virus(virusTexture);
-        virusList[2] = new Virus(virusTexture);
-        virusList[3] = new Virus(virusTexture);
+        virusList = new ArrayList<Virus>();
+        for(int i = 0; i < 4; i++) {
+            v1 = new Virus(virusTexture);
+            virusList.add(v1);
+        }
         
-        virusList[0].setPosition(40, 40);
-        virusList[1].setPosition(40, Gdx.graphics.getHeight() - 40);
-        virusList[2].setPosition(Gdx.graphics.getWidth() - 40, 40);
-        virusList[3].setPosition(Gdx.graphics.getWidth() - 40, 
+        virusList.get(0).setPosition(40, 40);
+        virusList.get(1).setPosition(40, Gdx.graphics.getHeight() - 40);
+        virusList.get(2).setPosition(Gdx.graphics.getWidth() - 40, 40);
+        virusList.get(3).setPosition(Gdx.graphics.getWidth() - 40, 
                 Gdx.graphics.getHeight() -40);
-        v1 = new Virus(virusTexture);
-        v1.setPosition(40, 40);
+        //v1 = new Virus(virusTexture);
+        //v1.setPosition(40, 40);
         
         pen = new BitmapFont();
         pen.setColor(Color.BLACK);
@@ -96,10 +96,7 @@ public class TDS extends ApplicationAdapter {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             System.exit(0);
         }
-        
-        for(Wall wall : walls){
-            admin.wallCollison(wall);
-        }                
+                
         
         batch.begin();
         for(Wall wall : walls){
@@ -110,12 +107,20 @@ public class TDS extends ApplicationAdapter {
         admin.draw(batch);
         admin.bullets.draw(batch);
 
-        //virusList[0].move(admin.getX(), admin.getY());
-        //virusList[0].draw(batch);
         for(Virus v : virusList) {
             v.draw(batch);
             v.move(admin.getX() + admin.getWidth()/2, 
                     admin.getY() + admin.getHeight()/2);
+            if( admin.getBoundingRectangle().overlaps(v.getBoundingRectangle()) ) {
+                System.out.println("hit");
+                //virusList.remove(v);
+                admin.setPosition(Gdx.graphics.getWidth()/2, 
+                        Gdx.graphics.getHeight()/2);
+                admin.setLives(admin.getLives()-1);
+                if( admin.getLives() <= 0 ){
+                    System.exit(0);
+                }
+            }
         }
         //v1.draw(batch);
         //v1.move(admin.getX(), admin.getY());
