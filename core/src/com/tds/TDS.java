@@ -43,17 +43,17 @@ public class TDS extends ApplicationAdapter {
         
         Texture virusTexture = new Texture("bluevirus.jpg");
         
-        //virusList = new Virus[4];
-        //virusList[0] = new Virus(virusTexture);
-        //virusList[1] = new Virus(virusTexture);
-        //virusList[2] = new Virus(virusTexture);
-        //virusList[3] = new Virus(virusTexture);
+        virusList = new Virus[4];
+        virusList[0] = new Virus(virusTexture);
+        virusList[1] = new Virus(virusTexture);
+        virusList[2] = new Virus(virusTexture);
+        virusList[3] = new Virus(virusTexture);
         
-        //virusList[0].setPosition(40, 40);
-        //virusList[1].setPosition(40, Gdx.graphics.getHeight() - 40);
-        //virusList[2].setPosition(Gdx.graphics.getWidth() - 40, 40);
-        //virusList[3].setPosition(Gdx.graphics.getWidth() - 40, 
-        //        Gdx.graphics.getHeight() -40);
+        virusList[0].setPosition(40, 40);
+        virusList[1].setPosition(40, Gdx.graphics.getHeight() - 40);
+        virusList[2].setPosition(Gdx.graphics.getWidth() - 40, 40);
+        virusList[3].setPosition(Gdx.graphics.getWidth() - 40, 
+                Gdx.graphics.getHeight() -40);
         v1 = new Virus(virusTexture);
         v1.setPosition(40, 40);
         
@@ -88,8 +88,8 @@ public class TDS extends ApplicationAdapter {
     @Override
     public void render () {
         admin.processMovement();   
-        v1.move(admin.getX() + admin.getWidth()/2, 
-                admin.getY() + admin.getHeight()/2);
+        //v1.move(admin.getX() + admin.getWidth()/2, 
+          //      admin.getY() + admin.getHeight()/2);
         Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
@@ -107,13 +107,15 @@ public class TDS extends ApplicationAdapter {
         admin.draw(batch);
         admin.bullets.draw(batch);
 
-//        virusList[0].move(admin.getX(), admin.getY());
-//        virusList[0].draw(batch);
-//        for(Virus v : virusList) {
-//            v.draw(batch);
-//            v.move(admin.getX(), admin.getY());
-//        }
-        v1.draw(batch);
+        //virusList[0].move(admin.getX(), admin.getY());
+        //virusList[0].draw(batch);
+        for(Virus v : virusList) {
+            v.draw(batch);
+            v.move(admin.getX() + admin.getWidth()/2, 
+                    admin.getY() + admin.getHeight()/2);
+            if
+        }
+        //v1.draw(batch);
         //v1.move(admin.getX(), admin.getY());
         hud.drawHud(batch, pen);
         
