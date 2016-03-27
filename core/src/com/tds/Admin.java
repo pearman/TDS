@@ -58,7 +58,10 @@ public class Admin extends Entity{
             setX(Gdx.graphics.getWidth());
         if(getX() < 0)
             setX(0);
-        
+        if(getY() < 0)
+            setY(0);
+        if(getY() > Gdx.graphics.getHeight())
+            setY(Gdx.graphics.getHeight());
         
         float dirX =  mouseX - getX() - getWidth()/2;
         float dirY =  mouseY - getY() - getHeight()/2;
