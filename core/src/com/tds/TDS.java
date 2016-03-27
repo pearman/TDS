@@ -55,6 +55,7 @@ public class TDS extends ApplicationAdapter {
         
         batch.begin();
         admin.draw(batch);
+        admin.bullets.draw(batch);
         v1.draw(batch);
         batch.end();
     }

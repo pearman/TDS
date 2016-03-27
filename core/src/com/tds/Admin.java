@@ -16,11 +16,13 @@ import com.badlogic.gdx.math.Circle;
  */
 public class Admin extends Entity{   
     int lives;
+    ParticleSystem bullets;
 
     public Admin(float strength, int lives, float health, float speed, 
             Texture texture) {
         super(health, speed, texture, 0, 0, 64, 64);
         this.lives = lives;
+        bullets = new ParticleSystem(texture);
     }
 
     
@@ -55,15 +57,20 @@ public class Admin extends Entity{
         float dirX =  mouseX - getX() - getWidth()/2;
         float dirY =  mouseY - getY() - getHeight()/2;
         double angle = Math.atan2(-dirX, dirY);
-        
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+            bullets.shoot(4, getRotation(), getX(), getY(), 20);
+                
         this.boundingCircle.setPosition(this.getX(), this.getY());
         
         setRotation((float)Math.toDegrees(angle));
+        
+        bullets.process();
     }
     
-    public Boolean checkCollision(Entity e){
-        Circle c1 = e.getBoundingCircle();
-        Circle c2 = this.getBoundingCircle();
-        return c1.overlaps(c2);
-    }
+//    public Boolean checkCollision(Entity e){
+//        //Circle c1 = e.getBoundingCircle();
+//        //Circle c2 = this.getBoundingCircle();
+//        //return c1.overlaps(c2);
+//    }
+//}
 }
