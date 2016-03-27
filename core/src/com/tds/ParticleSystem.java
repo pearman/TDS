@@ -43,7 +43,6 @@ public class ParticleSystem {
         rateTimer += time;
         for(int i = particles.size() - 1; i >= 0; i--) {
             particles.get(i).translate(particles.get(i).vx, particles.get(i).vy);
-            System.out.println(particles.get(i).getX());
             particles.get(i).health -= time;
             if(particles.get(i).health <= 0) {
                 particles.remove(i);
