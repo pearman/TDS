@@ -8,7 +8,6 @@ package com.tds;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Circle;
 
 /**
  *
@@ -21,6 +20,7 @@ public class Admin extends Entity{
     public Admin(float strength, int lives, float health, float speed, 
             Texture texture) {
         super(health, speed, texture, 0, 0, 64, 64);
+        setOriginCenter();
         this.lives = lives;
         bullets = new ParticleSystem(texture);
     }
@@ -53,15 +53,6 @@ public class Admin extends Entity{
             this.setY(this.getY() + Gdx.graphics.getDeltaTime() * getSpeed());
         if(Gdx.input.isKeyPressed(Input.Keys.S)) 
             this.setY(this.getY() - Gdx.graphics.getDeltaTime() * getSpeed());
-        
-        if(getX() - getWidth()/2 > Gdx.graphics.getWidth())
-            setX(Gdx.graphics.getWidth());
-        if(getX() - getWidth()/2 < 0)
-            setX(0);
-        if(getY() - getHeight()/2< 0)
-            setY(0);
-        if(getY() - getHealth()/2 > Gdx.graphics.getHeight())
-            setY(Gdx.graphics.getHeight());
         
         float dirX =  mouseX - getX() - getWidth()/2;
         float dirY =  mouseY - getY() - getHeight()/2;
