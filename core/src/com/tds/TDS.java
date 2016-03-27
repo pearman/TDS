@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.Color;
+import java.util.ArrayList;
 
 public class TDS extends ApplicationAdapter {
     HUD hud;
@@ -25,6 +26,7 @@ public class TDS extends ApplicationAdapter {
     float speed;
     BitmapFont pen;
     Virus v1;
+    Wall[] walls;
 
     @Override
     public void create () {
@@ -44,6 +46,26 @@ public class TDS extends ApplicationAdapter {
         
         pen = new BitmapFont();
         pen.setColor(Color.BLACK);
+        
+        walls = new Wall[4];
+        
+        //Bottem Wall
+        Wall temp = new Wall();
+        temp.setSize(700, 50);
+        temp.setPosition(50, 0);
+        walls[0] = temp;
+        temp = new Wall();
+        temp.setSize(700, 50);
+        temp.setPosition(50, Gdx.graphics.getHeight() - 50);
+        walls[1] = temp;
+        temp = new Wall();
+        temp.setSize(50, 500);
+        temp.setPosition(0, 50);
+        walls[2] = temp;
+        temp = new Wall();
+        temp.setSize(50, 500);
+        temp.setPosition(Gdx.graphics.getWidth()- 50, 50);
+        walls[3] = temp;
     }
 
     @Override
@@ -54,10 +76,16 @@ public class TDS extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         batch.begin();
+        for(Wall wall : walls){
+            if(wall != null){
+                wall.draw(batch);
+            }
+        }
         admin.draw(batch);
         admin.bullets.draw(batch);
         v1.draw(batch);
         hud.drawHud(batch, pen);
+        
         batch.end();
     }
 }
