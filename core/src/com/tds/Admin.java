@@ -34,7 +34,7 @@ public class Admin extends Entity{
         setScale(0.25f);
         
         this.lives = lives;
-        bullets = new ParticleSystem(texture);
+        bullets = new ParticleSystem(new Texture("Bullet.png"));
         textures.add(new Texture("frontBase.png"));
         textures.add(new Texture("frontLeft.png"));
         textures.add(new Texture("frontRight.png"));
