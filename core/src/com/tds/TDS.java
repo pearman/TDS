@@ -113,13 +113,18 @@ public class TDS extends ApplicationAdapter {
                     admin.getY() + admin.getHeight()/2);
             if( admin.getBoundingRectangle().overlaps(v.getBoundingRectangle()) ) {
                 System.out.println("hit");
-                //virusList.remove(v);
+                v.setStatus(false);
                 admin.setPosition(Gdx.graphics.getWidth()/2, 
                         Gdx.graphics.getHeight()/2);
                 admin.setLives(admin.getLives()-1);
                 if( admin.getLives() <= 0 ){
                     System.exit(0);
                 }
+            }
+        }
+        for(int i = virusList.size() - 1; i >= 0; i-- ) {
+            if(virusList.get(i).getStatus() != true) {
+                virusList.remove(virusList.get(i));
             }
         }
         //v1.draw(batch);
