@@ -18,4 +18,20 @@ public class Virus extends Entity{
         
     }
     
+    /**
+     * @author KeisterBun
+     * @param adminX
+     * @param adminY 
+     */
+    public void move(float adminX, float adminY){
+        float dirX =  adminX - getX();
+        float dirY =  adminY - getY();
+        double angle = Math.atan2(-dirX, dirY);
+        float x, y;
+        
+        x = (float)Math.cos(angle + 90f) * getSpeed();
+        y = (float)Math.sin(angle + 90f) * getSpeed();
+        this.translate(x, y);
+    }
+    
 }
